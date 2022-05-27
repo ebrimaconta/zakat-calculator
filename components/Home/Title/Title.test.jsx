@@ -6,7 +6,7 @@ import { render, screen } from '@testing-library/react';
 describe('Homepage', () => {
   it('Shows title', () => {
     render(<Titles/>);
-    const title = screen.getByTestId('title')
+    const titleElement = screen.getByTestId('title')
     expect(title).toHaveTextContent('Welcome to zakatCal')
   })
 })
