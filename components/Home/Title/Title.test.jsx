@@ -4,9 +4,8 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 
 describe('Homepage', () => {
-  it('Shows title', () => {
+  it('Should render title', () => {
     render(<Titles/>);
-    const titleElement = screen.getByTestId('title')
-    expect(title).toHaveTextContent('Welcome to zakatCal')
-  })
+    const titleElement = screen.getByText('Welcome to')
+})
 })

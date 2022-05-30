@@ -1,4 +1,4 @@
-import {Title, LastWord} from '../../styles/Title.styled'
+import {Title, LastWord} from './Title.styled'
 
 export function Titles() {
     return(
