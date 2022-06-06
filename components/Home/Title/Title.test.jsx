@@ -1,11 +1,11 @@
 import {Titles} from '../Title/Titles'
-import {Home} from '../../../pages/index'
-import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom'
+import { render, screen } from '@testing-library/react'
+import React from 'react'
 
 describe('Homepage', () => {
-  it('Should render title', () => {
-    render(<Titles/>);
-    const titleElement = screen.getByText('Welcome to')
-})
+	it('Should render title', () => {
+		render(<Titles/>)
+		expect(screen.getByRole('heading')).toHaveTextContent('Welcome to zakatCal')
+	})
 })
