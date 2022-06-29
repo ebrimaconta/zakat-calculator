@@ -1,5 +1,4 @@
-import styled from "styled-components";
-import Modal from "react-bootstrap/Modal"
+import styled from 'styled-components';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
 export const Form = styled.form`
   width: 30%;
@@ -10,9 +9,10 @@ export const Form = styled.form`
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  display: inline-block;
-  align-items: center;
-  justify-content: center;
+  display: flex ;
+  flex-direction: column;
+  position: relative;
+  margin: 0 auto;
 `;
 export const Div = styled.div`
   border-radius: 5px;
