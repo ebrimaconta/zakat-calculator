@@ -1,57 +1,63 @@
 import ReactDOM from 'react-dom/client'
-import React, { useState, useRef, useForm, useEffect } from 'react'
-import { Form, Div, Input, H3, NisabBanner, Due, InfoOut, Information } from '../Calculator/CalculatorForm.styled'
+import React, { useEffect, useState } from 'react'
+import { Form, Div, Input, Due, SubmitButton } from '../Calculator/CalculatorForm.styled'
+import { useFormik, useFormikContext } from 'formik'
+import * as Yup from 'yup'
 
-export function CalculatorForm() {
-  const [goldSilverInput, getGold] = useState('')
-  const [cashInput, getCash] = useState('')
-  const [buisnesAssets, getAssets] = useState('')
-  const [liabailities, getLiabilities] = useState('')
-  const myFormRef = useRef()
+export const CalculatorForm = () => {
+  let [dueAmount, calculateAmount] = useState('')
 
-  function handleSubmit(event) {
-    event.preventDefault()
-    const result = (goldSilverInput + cashInput + buisnesAssets - liabailities) * 0.025
-    const root = ReactDOM.createRoot(document.getElementById('due'))
-    root.render(' Zakat due:  £ ' + Math.round(result))
-  }
+  const formValidation = Yup.object().shape({
+    goldandsilver: Yup.number().required('Required').positive(),
+    cash: Yup.number().required('Required').positive(),
+    buisnessAssets: Yup.number().required('Required').positive(),
+    liabilities: Yup.number().required('Required').positive()
+  })
+
+  const formik = useFormik({
+    initialValues: {
+      goldSilver: '',
+      cash: '',
+      buisnessAssets: '',
+      liabilities: ''
+    },
+    formValidation,
+    onSubmit: (values) => {
+      dueAmount = (values.buisnessAssets + values.cash + values.goldSilver - values.liabilities) * 0.025
+      calculateAmount(dueAmount)
+    },
+    handleReset: (values) => {
+      calculateAmount(0)
+      resetform
+    }
+  })
 
   return (
     <Div>
-      <H3>Calculate your zakat </H3>
- 
-      <Form onSubmit={handleSubmit} ref={myFormRef}>
-        <label htmlFor="goldandsilver">Gold and Silver</label>
+      <Form onSubmit={formik.handleSubmit}>
+        <label htmlFor='goldSilver'>Gold and Silver</label>
         <Input
-          type="number"
-          placeholder="Value £"
-          value={goldSilverInput}
-          onChange={(e) => getGold(e.target.valueAsNumber)}
-        ></Input>
-        <label htmlFor="cashInput">Cash</label>
+          name='goldSilver'
+          type='number'
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.goldSilver}
+        />
+        <label htmlFor='Cash'>Cash</label>
+        <Input name='cash' type='number' onChange={formik.handleChange} value={formik.values.cash} />
+        <label htmlFor='buisnessAssets'>Buisness assets</label>
         <Input
-          type="number"
-          placeholder="Value £."
-          value={cashInput}
-          onChange={(e) => getCash(e.target.valueAsNumber)}
-        ></Input>
-        <label htmlFor="assets">Business Assets</label>
-        <Input
-          type="number"
-          placeholder="Value £"
-          value={buisnesAssets}
-          onChange={(e) => getAssets(e.target.valueAsNumber)}
-        ></Input>
-        <label htmlFor="liabailities">Short Term Liabilities</label>
-        <Input
-          type="number"
-          placeholder="Value £"
-          value={liabailities}
-          onChange={(e) => getLiabilities(e.target.valueAsNumber)}
-        ></Input>
-        <Input type="submit" onClick={handleSubmit} value="Calculate"></Input>
+          name='buisnessAssets'
+          type='number'
+          onChange={formik.handleChange}
+          value={formik.values.buisnessAssets}
+        />
+        <label htmlFor='liabilities'>Short term liabilities</label>
+        <Input name='liabilities' type='number' onChange={formik.handleChange} value={formik.values.liabilities} />
+        <SubmitButton type='submit'>Submit</SubmitButton>
       </Form>
-      <Due id="due"></Due>
+
+      <Due id='due'>Zakat due: {dueAmount}</Due>
     </Div>
   )
 }

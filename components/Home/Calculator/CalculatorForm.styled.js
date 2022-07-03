@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
+import  Button from '@material-ui/core/Button';
+
 export const Form = styled.form`
   width: 30%;
   background-color: #112b3c;
@@ -50,4 +52,11 @@ font-weight: 900;
 export const InfoOut = styled(InfoOutlined)`
   background-color: #112b3c;
   color: whitesmoke;
+`
+export const SubmitButton = styled(Button)`
+  && {
+    background: #293462;
+    color: white
+    }
+
 `
