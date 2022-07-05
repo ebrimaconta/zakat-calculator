@@ -55,8 +55,13 @@ export const InfoOut = styled(InfoOutlined)`
 `
 export const SubmitButton = styled(Button)`
   && {
-    background: #293462;
-    color: white
+    margin-top: 20px;
+    background: #243A73;
+    &:hover {
+    background-color: #B7D3DF;
+  }
     }
-
+`
+export const Error = styled.div`
+color: red
 `
