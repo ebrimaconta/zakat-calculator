@@ -24,9 +24,8 @@ export const CalculatorForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      const dueAmount = Math.round((values.buisnessAssets + values.cash + values.goldSilver - values.liabilities) * 0.025)
-      calculateAmount(dueAmount)
-      console.log(dueAmount)
+      const totalDue = Math.round((values.buisnessAssets + values.cash + values.goldSilver - values.liabilities) * 0.025)
+      calculateAmount(totalDue)
     },
   })
   return (
@@ -75,7 +74,7 @@ export const CalculatorForm = () => {
               ) : null}
            <SubmitButton type='submit'>Submit</SubmitButton>
         </Form>
-      <Due id='due'>Zakat due: £ { dueAmount }</Due>
+      <Due>Zakat due: £ { dueAmount }</Due>
     </Div>
   )
 }
