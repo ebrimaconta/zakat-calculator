@@ -8,4 +8,4 @@ describe('Homepage', () => {
 		render(<Titles/>)
 		expect(screen.getByRole('heading')).toHaveTextContent('Welcome to zakatCal')
 	})
-})
+})               

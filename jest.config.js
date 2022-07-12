@@ -1,13 +1,13 @@
 const config = {
-    verbose: true,
-  };
+	verbose: true,
+}
   
-  module.exports = config;
+module.exports = config
   
-  // Or async function
-  module.exports = async () => {
-    return {
-      verbose: true,
-      "testEnvironment": "jsdom"
-    };
-  };
+// Or async function
+module.exports = async () => {
+	return {
+		verbose: true,
+		'testEnvironment': 'jsdom'
+	}
+}
