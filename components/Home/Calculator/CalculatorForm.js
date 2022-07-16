@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { Form, Div, Input, Due, SubmitButton, Error } from '../Calculator/CalculatorForm.styled'
-import { useFormik, Formik} from 'formik'
+import React, { useState } from 'react'
+import { Form, Div, Input, Due, SubmitButton, Error, H3 } from '../Calculator/CalculatorForm.styled'
+import { useFormik, Formik,} from 'formik'
 import * as yup from 'yup'
 
 
@@ -30,6 +30,8 @@ export const CalculatorForm = () => {
   })
   return (
     <Div>
+      <H3>Enter amounts</H3>
+      <Formik>
         <Form onSubmit={formik.handleSubmit}>
             <label htmlFor='goldSilver'>Gold and Silver</label>
             <Input
@@ -74,6 +76,7 @@ export const CalculatorForm = () => {
               ) : null}
            <SubmitButton type='submit'>Submit</SubmitButton>
         </Form>
+        </Formik>
       <Due>Zakat due: £ { dueAmount }</Due>
     </Div>
   )
