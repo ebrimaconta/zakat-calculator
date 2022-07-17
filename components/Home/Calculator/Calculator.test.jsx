@@ -1,8 +1,7 @@
 import { CalculatorForm } from './CalculatorForm'
 import '@testing-library/jest-dom'
-import { getByRole, logRoles, render, screen, waitFor, fireEvent } from '@testing-library/react'
+import { render, screen, waitFor, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { useFormik, Formik, Field} from 'formik'
 
 describe('Calculator form', () => {
     it('Should render Calculator', () => {
