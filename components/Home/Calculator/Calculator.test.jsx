@@ -1,6 +1,6 @@
 import { CalculatorForm } from './CalculatorForm'
 import '@testing-library/jest-dom'
-import { render, screen, waitFor, fireEvent } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 describe('Calculator form', () => {
@@ -10,8 +10,7 @@ describe('Calculator form', () => {
   })
 
   it('rendering and submitting form', async () => {
-    const onSubmit = jest.fn()
-    render(<CalculatorForm onSubmit={onSubmit} />)
+    render(<CalculatorForm/>)
     const user = userEvent.setup()
 
     const goldSilver = document.querySelector('input[name="goldSilver"]')
@@ -24,7 +23,7 @@ describe('Calculator form', () => {
     await user.type(buisnessAssets, '100')
     await user.type(liabilities, '100')
 
-    fireEvent.click(document.querySelector('button[type="submit"]'))
+    user.click(document.querySelector('button[type="submit"]'))
 
     const due = document.querySelector('p')
     await waitFor(() => expect(due).toHaveTextContent('Zakat due: £ 5'))
