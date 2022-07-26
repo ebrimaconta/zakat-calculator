@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
-import  Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
+import {Field} from 'formik'
 
 export const Form = styled.form`
   width: 30%;
@@ -25,7 +26,7 @@ export const Div = styled.div`
   vertical-align: middle;
   background-color: #112b3c;
 `;
-export const Input = styled.input`
+export const Input = styled(Field)`
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -35,7 +36,7 @@ export const Input = styled.input`
   box-sizing: border-box;
 `;
 export const H3 = styled.h3`
-  color: white;
+  color: #F2D1D1;
 `;
 export const Information = styled.h4`
 color: #F9EBC8;
