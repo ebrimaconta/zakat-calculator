@@ -5,7 +5,7 @@ import {Field} from 'formik'
 
 export const Form = styled.form`
   width: 30%;
-  background-color: #112b3c;
+  background-color: #041C32;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -24,7 +24,7 @@ export const Div = styled.div`
   justify-content: center;
   text-align: center;
   vertical-align: middle;
-  background-color: #112b3c;
+  background-color: #041C32;
 `;
 export const Input = styled(Field)`
   width: 100%;
@@ -46,7 +46,7 @@ export const NisabBanner = styled.div`
 text-align: center;
 `
 export const Due = styled.p`
-color: #F2D1D1;
+color: #F9EBC8;
 font-size: 30px;
 font-weight: 900;
 `
@@ -57,7 +57,7 @@ export const InfoOut = styled(InfoOutlined)`
 export const SubmitButton = styled(Button)`
   && {
     margin-top: 20px;
-    background: #243A73;
+    background: #F9EBC8;
     &:hover {
     background-color: #B7D3DF;
   }

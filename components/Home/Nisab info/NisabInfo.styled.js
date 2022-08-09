@@ -16,3 +16,6 @@ export const InfoOut = styled(InfoOutlined)`
   background-color: #112b3c;
   color: whitesmoke;
 `
+export const Nisab = styled.span`
+color: #F9EBC8;
+`
