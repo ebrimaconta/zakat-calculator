@@ -6,7 +6,7 @@ export function NisabInfo() {
   const [goldPrice, setGoldPrice] = useState([])
   const [silverPrice, setSilverPrice] = useState([])
 
-  const getApiData = async () => {
+  const getApiData = () => {
     const myHeaders = new Headers()
     myHeaders.append('x-access-token', 'goldapi-azzy7gtl6gk3su7-io')
     myHeaders.append('Content-Type', 'application/json')
@@ -17,19 +17,21 @@ export function NisabInfo() {
       redirect: 'follow'
     }
 
-    const goldResponse = fetch('https://www.goldapi.io/api/XAU/GBP', requestOption)
-      .then((result) => result.json())
-      .then((result) => {
-        setGoldPrice((result.price_gram_24k * 85).toFixed(2))
-      })
-      .catch((error) => console.log('error', error))
+    Promise.all([
+      fetch('https://www.goldapi.io/api/XAU/GBP', requestOption)
+        .then((result) => result.json())
+        .then((result) => {
+          setGoldPrice((result.price_gram_24k * 85).toFixed(2))
+        })
+        .catch((error) => console.log('error', error)),
 
-    const silverResponse = fetch('https://www.goldapi.io/api/XAG/GBP', requestOption)
-      .then((result) => result.json())
-      .then((result) => {
-        setSilverPrice((result.price_gram_24k * 595).toFixed(2))
-      })
-      .catch((error) => console.log('error', error))
+      fetch('https://www.goldapi.io/api/XAG/GBP', requestOption)
+        .then((result) => result.json())
+        .then((result) => {
+          setSilverPrice((result.price_gram_24k * 595).toFixed(2))
+        })
+        .catch((error) => console.log('error', error))
+    ])
   }
 
   useEffect(() => {
