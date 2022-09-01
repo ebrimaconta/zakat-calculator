@@ -1,42 +1,51 @@
-import { H3, NisabBanner, InfoOut, Information, Nisab } from './NisabInfo.styled'
+import { H3, NisabBanner, InfoOut, Information, Nisab, Ermes } from './NisabInfo.styled'
 import { Tooltip } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import React, { useState, useEffect } from 'react'
 export function NisabInfo() {
   const [goldPrice, setGoldPrice] = useState([])
   const [silverPrice, setSilverPrice] = useState([])
-
+  const [isPending, setIsPending] = useState(true)
+  const [error, setError] = useState()
   const getApiData = () => {
+  
     const myHeaders = new Headers()
-    myHeaders.append('x-access-token', 'goldapi-azzy7gtl6gk3su7-io')
+   
+    myHeaders.append('x-access-token', process.env.NEXT_PUBLIC_API_KEY)
     myHeaders.append('Content-Type', 'application/json')
-
+    
     const requestOption = {
       method: 'GET',
       headers: myHeaders,
-      redirect: 'follow'
+      redirect: 'follow',
+      
     }
-
-    Promise.all([
-      fetch('https://www.goldapi.io/api/XAU/GBP', requestOption)
-        .then((result) => result.json())
-        .then((result) => {
-          setGoldPrice((result.price_gram_24k * 85).toFixed(2))
+    const goldResponse = fetch(process.env.NEXT_PUBLIC_GOLD_URL, requestOption)
+    const silverResponse = fetch(process.env.NEXT_PUBLIC_SILVER_URL, requestOption)
+    Promise.all([goldResponse,silverResponse])
+      .then(res => {
+          return Promise.all(res.map(r => r.json()))
         })
-        .catch((error) => console.log('error', error)),
+      .then(res => {
+        console.log(res)
+        //setGoldPrice((result.[0].price_gram_24k * 85).toFixed(2))
+        setGoldPrice('£' + (res.[0].price_gram_24k * 85).toFixed(2))
+        setSilverPrice('£'+ (res.[1].price_gram_24k * 595).toFixed(2))
+        setError(false)
+        setIsPending(false)
+      })
+      .catch(error => {
+        console.log(error.message)
+        setError('Sorry unable to fetch nisab')
+        setIsPending(false)
+      })
 
-      fetch('https://www.goldapi.io/api/XAG/GBP', requestOption)
-        .then((result) => result.json())
-        .then((result) => {
-          setSilverPrice((result.price_gram_24k * 595).toFixed(2))
-        })
-        .catch((error) => console.log('error', error))
-    ])
   }
-
+  
   useEffect(() => {
     getApiData()
-  }, [])
+  
+  },[] )
   return (
     <NisabBanner>
       <Tooltip
@@ -50,12 +59,18 @@ export function NisabInfo() {
           </IconButton>
         </Information>
       </Tooltip>
-
       <H3>
-        Today's Gold nisab: <Nisab>£{goldPrice}</Nisab>{' '}
+        Todays's gold nisab: 
+        {isPending && <Nisab> Loading..</Nisab>}
+        {goldPrice && <Nisab> {goldPrice} </Nisab>}
+        {error && <Ermes> {error} </Ermes>}
       </H3>
       <H3>
-        Today's Silver nisab: <Nisab>£{silverPrice}</Nisab>{' '}
+        Todays's Silver nisab: 
+        {isPending && <Nisab> Loading..</Nisab>}
+        {goldPrice && <Nisab> {silverPrice} </Nisab>}
+        {error && <Ermes> {error} </Ermes>}
+       
       </H3>
     </NisabBanner>
   )
