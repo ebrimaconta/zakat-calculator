@@ -20,12 +20,16 @@ export function NisabInfo() {
       redirect: 'follow',
       
     }
-    const goldResponse = fetch(process.env.NEXT_PUBLIC_GOLD_URL, requestOption)
-    const silverResponse = fetch(process.env.NEXT_PUBLIC_SILVER_URL, requestOption)
-    Promise.all([goldResponse,silverResponse])
-      .then(res => {
-          return Promise.all(res.map(r => r.json()))
-        })
+
+    const url = [
+      process.env.NEXT_PUBLIC_GOLD_URL,
+      process.env.NEXT_PUBLIC_SILVER_URL
+    ]
+    
+    //Fetch url from array 
+    //map() calls function once for each element in array 
+    Promise.all(url.map(url => fetch(url, requestOption)
+      .then(res => res.json())))
       .then(res => {
         console.log(res)
         //setGoldPrice((result.[0].price_gram_24k * 85).toFixed(2))
