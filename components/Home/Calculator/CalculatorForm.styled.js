@@ -70,9 +70,9 @@ export const ResetButton = styled(Button)`
   && {
     font-size: 12px;
     font-weight: bold;
-    color: #16213e;
+    color: white;
     margin-top: 20px;
-    background: #5f6f94;
+    background: #25316D;
     &:hover {
       background-color: #b7d3df;
     }

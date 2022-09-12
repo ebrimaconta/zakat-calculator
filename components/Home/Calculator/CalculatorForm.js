@@ -33,7 +33,7 @@ export const CalculatorForm = () => {
   })
   return (
     <Div>
-      <H3>Enter amounts</H3>
+      <H3>Enter amounts below</H3>
       <Formik>
         <Form onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
           <label htmlFor="goldSilver">Gold and Silver</label>
