@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Form, Div, Input, Due, SubmitButton, Error, H3 } from '../Calculator/CalculatorForm.styled'
+import { Form, Div, Input, Due, SubmitButton, Error, H3, ResetButton } from '../Calculator/CalculatorForm.styled'
 import { useFormik, Formik } from 'formik'
 import * as yup from 'yup'
 
 export const CalculatorForm = () => {
-  let [dueAmount, calculateAmount] = useState('')
+  const [dueAmount, calculateAmount] = useState('')
 
   const validationSchema = yup.object().shape({
     goldSilver: yup.number().required('Please enter a amount'),
@@ -25,14 +25,17 @@ export const CalculatorForm = () => {
       const totalDue = Math.round(
         (values.buisnessAssets + values.cash + values.goldSilver - values.liabilities) * 0.025
       )
-      calculateAmount(totalDue)
+      calculateAmount('Zakat due: £' + totalDue)
+    },
+    onReset: () => {
+      calculateAmount(false)
     }
   })
   return (
     <Div>
-      <H3>Enter amounts</H3>
+      <H3>Enter amounts below</H3>
       <Formik>
-        <Form onSubmit={formik.handleSubmit}>
+        <Form onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
           <label htmlFor="goldSilver">Gold and Silver</label>
           <Input
             name="goldSilver"
@@ -73,9 +76,10 @@ export const CalculatorForm = () => {
           />
           {formik.touched.liabilities && formik.errors.liabilities ? <Error>{formik.errors.liabilities}</Error> : null}
           <SubmitButton type="submit">Submit</SubmitButton>
+          <ResetButton type="reset">Reset</ResetButton>
         </Form>
       </Formik>
-      <Due>Zakat due: £ {dueAmount}</Due>
+      <Due>{dueAmount}</Due>
     </Div>
   )
 }
