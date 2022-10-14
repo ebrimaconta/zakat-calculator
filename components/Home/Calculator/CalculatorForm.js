@@ -5,7 +5,6 @@ import * as yup from 'yup'
 
 export const CalculatorForm = () => {
   const [dueAmount, calculateAmount] = useState('')
-
   const validationSchema = yup.object().shape({
     goldSilver: yup.number().required('Please enter a amount'),
     cash: yup.number().required('Please enter a amount'),
@@ -25,7 +24,11 @@ export const CalculatorForm = () => {
       const totalDue = Math.round(
         (values.buisnessAssets + values.cash + values.goldSilver - values.liabilities) * 0.025
       )
-      calculateAmount('Zakat due: £' + totalDue)
+      if (totalDue < 0) {
+        calculateAmount('You have no zakat due')
+      } else {
+        calculateAmount('Zakat due: £' + totalDue)
+      }
     },
     onReset: () => {
       calculateAmount(false)
@@ -79,6 +82,7 @@ export const CalculatorForm = () => {
           <ResetButton type="reset">Reset</ResetButton>
         </Form>
       </Formik>
+
       <Due>{dueAmount}</Due>
     </Div>
   )
