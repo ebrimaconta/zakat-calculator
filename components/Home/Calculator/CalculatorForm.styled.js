@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import InfoOutlined from '@mui/icons-material/InfoOutlined';
-import Button from '@material-ui/core/Button';
-import {Field} from 'formik'
+import styled from 'styled-components'
+import InfoOutlined from '@mui/icons-material/InfoOutlined'
+import Button from '@material-ui/core/Button'
+import { Field } from 'formik'
 
 export const Form = styled.form`
   width: 30%;
@@ -12,11 +12,11 @@ export const Form = styled.form`
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  display: flex ;
+  display: flex;
   flex-direction: column;
   position: relative;
   margin: 0 auto;
-`;
+`
 export const Div = styled.div`
   border-radius: 5px;
   background-color: #f2f2f2;
@@ -26,6 +26,7 @@ export const Div = styled.div`
   vertical-align: middle;
   background-color: #041C32;
 `;
+
 export const Input = styled(Field)`
   width: 100%;
   padding: 12px 20px;
@@ -34,16 +35,16 @@ export const Input = styled(Field)`
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-`;
+`
 export const H3 = styled.h3`
-  color: #F2D1D1;
-`;
+  color: #f2d1d1;
+`
 export const Information = styled.h4`
-color: #F9EBC8;
-text-decoration: underline;
+  color: #f9ebc8;
+  text-decoration: underline;
 `
 export const NisabBanner = styled.div`
-text-align: center;
+  text-align: center;
 `
 export const Due = styled.p`
 color: #F9EBC8;
@@ -56,13 +57,30 @@ export const InfoOut = styled(InfoOutlined)`
 `
 export const SubmitButton = styled(Button)`
   && {
+    font-size: 12px;
+    color: #16213e;
+    font-weight: bold;
     margin-top: 20px;
     background: #F9EBC8;
+
     &:hover {
-    background-color: #B7D3DF;
-  }
+      background-color: #b7d3df;
     }
+  }
 `
+export const ResetButton = styled(Button)`
+  && {
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    margin-top: 20px;
+    background: #25316D;
+    &:hover {
+      background-color: #b7d3df;
+    }
+  }
+`
+
 export const Error = styled.div`
-color: red
+  color: red;
 `
