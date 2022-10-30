@@ -25,7 +25,12 @@ export const CalculatorForm = () => {
       const totalDue = Math.round(
         (values.buisnessAssets + values.cash + values.goldSilver - values.liabilities) * 0.025
       )
-      calculateAmount('Zakat due: £' + totalDue)
+      if (totalDue > 0) {
+        calculateAmount('Zakat due: £' + totalDue)
+      }
+      else {
+        calculateAmount('You have no zakat to pay')
+      }
     },
     onReset: () => {
       calculateAmount(false)

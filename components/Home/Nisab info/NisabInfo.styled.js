@@ -6,7 +6,7 @@ export const H3 = styled.h3`
   color: white;
 `
 export const Information = styled.h4`
-color: #F2D1D1;
+color: white;
 text-decoration: underline;
 `
 export const NisabBanner = styled.div`

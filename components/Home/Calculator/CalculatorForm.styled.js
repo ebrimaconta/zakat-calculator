@@ -5,7 +5,7 @@ import { Field } from 'formik'
 
 export const Form = styled.form`
   width: 30%;
-  background-color: #041C32;
+  background-color: inherit;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -24,7 +24,7 @@ export const Div = styled.div`
   justify-content: center;
   text-align: center;
   vertical-align: middle;
-  background-color: #041C32;
+  background-color: inherit;
 `;
 
 export const Input = styled(Field)`
@@ -37,7 +37,7 @@ export const Input = styled(Field)`
   box-sizing: border-box;
 `
 export const H3 = styled.h3`
-  color: #f2d1d1;
+  color: white;
 `
 export const Information = styled.h4`
   color: #f9ebc8;
@@ -72,9 +72,9 @@ export const ResetButton = styled(Button)`
   && {
     font-size: 12px;
     font-weight: bold;
-    color: white;
+    color: #16213e;
     margin-top: 20px;
-    background: #25316D;
+    background: #f9ebc8;
     &:hover {
       background-color: #b7d3df;
     }
