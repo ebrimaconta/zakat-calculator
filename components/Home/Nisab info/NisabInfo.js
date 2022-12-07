@@ -2,6 +2,7 @@ import { H3, NisabBanner, InfoOut, Information, Nisab, Ermes } from './NisabInfo
 import { Tooltip } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import React, { useState, useEffect } from 'react'
+import fetch from 'node-fetch'
 export function NisabInfo() {
   const [goldPrice, setGoldPrice] = useState([])
   const [silverPrice, setSilverPrice] = useState([])
@@ -32,8 +33,8 @@ export function NisabInfo() {
       .then(res => res.json())))
       .then(res => {
         console.log(res)
-        setGoldPrice('£' + (res.[0].price_gram_24k * 85).toFixed(2))
-        setSilverPrice('£'+ (res.[1].price_gram_24k * 595).toFixed(2))
+        setGoldPrice('£' + (res[0].price_gram_24k * 85).toFixed(2))
+        setSilverPrice('£'+ (res[1].price_gram_24k * 595).toFixed(2))
         setError(false)
         setIsPending(false)
       })
@@ -63,17 +64,16 @@ export function NisabInfo() {
         </Information>
       </Tooltip>
       <H3>
-        Todays's gold nisab: 
+        Today's gold nisab: 
         {isPending && <Nisab> Loading..</Nisab>}
         {goldPrice && <Nisab> {goldPrice} </Nisab>}
         {error && <Ermes> {error} </Ermes>}
       </H3>
       <H3>
-        Todays's Silver nisab: 
+        Today's silver nisab: 
         {isPending && <Nisab> Loading..</Nisab>}
         {goldPrice && <Nisab> {silverPrice} </Nisab>}
         {error && <Ermes> {error} </Ermes>}
-       
       </H3>
     </NisabBanner>
   )
