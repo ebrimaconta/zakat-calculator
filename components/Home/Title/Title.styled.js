@@ -9,5 +9,5 @@ export const Title = styled.h1`
   margin-top: 60px;
 `
 export const LastWord = styled.span`
-color: #F9EBC8;
+  color: #fcd9b8;
 `

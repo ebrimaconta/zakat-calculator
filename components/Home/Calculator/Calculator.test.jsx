@@ -20,7 +20,6 @@ describe('Calculator form', () => {
 
     user.click(screen.getByText(/Submit/i))
 
-    const due = document.querySelector('p')
-    await waitFor(() => expect(due).toHaveTextContent('Zakat due: £ 6'))
+    await waitFor(() =>  expect(expect(screen.getByText("Zakat due: £6")).toBeInTheDocument()))
   })
 })
