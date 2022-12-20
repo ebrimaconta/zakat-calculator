@@ -33,8 +33,8 @@ export function NisabInfo() {
       .then(res => res.json())))
       .then(res => {
         console.log(res)
-        setGoldPrice('£' + (res[0].price_gram_24k * 85).toFixed(2))
-        setSilverPrice('£'+ (res[1].price_gram_24k * 595).toFixed(2))
+        setGoldPrice(`£ ${(res[0].price_gram_24k * 85).toFixed(2)}`)
+        setSilverPrice(`£ ${(res[1].price_gram_24k * 595).toFixed(2)}`)
         setError(false)
         setIsPending(false)
       })

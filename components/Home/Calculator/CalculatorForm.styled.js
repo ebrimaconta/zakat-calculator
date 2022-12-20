@@ -47,9 +47,9 @@ export const NisabBanner = styled.div`
   text-align: center;
 `
 export const Due = styled.p`
-color: #F9EBC8;
-font-size: 30px;
-font-weight: 900;
+  color: #fcd9b8;
+  font-size: 30px;
+  font-weight: 900;
 `
 export const InfoOut = styled(InfoOutlined)`
   background-color: #112b3c;
@@ -61,7 +61,7 @@ export const SubmitButton = styled(Button)`
     color: #16213e;
     font-weight: bold;
     margin-top: 20px;
-    background: #F9EBC8;
+    background: #fcd9b8;
 
     &:hover {
       background-color: #b7d3df;
@@ -74,7 +74,7 @@ export const ResetButton = styled(Button)`
     font-weight: bold;
     color: #16213e;
     margin-top: 20px;
-    background: #f9ebc8;
+    background: #fcd9b8;
     &:hover {
       background-color: #b7d3df;
     }
