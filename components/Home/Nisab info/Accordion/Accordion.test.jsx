@@ -1,4 +1,4 @@
-import { AccordianInfo } from './Accordian'
+import { AccordianInfo } from './Accordion'
 import { render, screen } from '@testing-library/react'
 
 describe('Accordian is rendered', () => {

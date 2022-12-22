@@ -1,6 +1,6 @@
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import { Div, Accord, Expand } from './Accordian.styled'
+import { Div, Accord, Expand } from './Accordion.styled'
 export function AccordianInfo() {
     
 return (
