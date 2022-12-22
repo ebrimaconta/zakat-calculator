@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Form, Div, Input, Due, SubmitButton, Error, H3, ResetButton } from '../Calculator/CalculatorForm.styled'
 import { useFormik, Formik } from 'formik'
 import * as yup from 'yup'
@@ -6,7 +6,13 @@ import * as yup from 'yup'
 export const CalculatorForm = ({ silverNisab }) => {
   const [dueAmount, calculateAmount] = useState('')
   //convert silver price into floating number to remove "£" sign
-  const silverNis = parseFloat(silverNisab.substring(1))
+  const silverNis = parseFloat(silverNisab.toString().substring(1))
+  const dueFocus = useRef()
+  //scroll amount into view:
+  const handleScroll = () => {
+    dueFocus.current.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth', alignToTop: false })
+  }
+
   const validationSchema = yup.object().shape({
     goldSilver: yup.number().required('Please enter a amount'),
     cash: yup.number().required('Please enter a amount'),
@@ -33,7 +39,9 @@ export const CalculatorForm = ({ silverNisab }) => {
         console.log(silverNis)
       } else {
         calculateAmount('Your total has not reached the minimum nisab')
+         console.log(silverNis)
       }
+      handleScroll(dueFocus.current)
     },
     onReset: () => {
       calculateAmount(false)
@@ -87,7 +95,7 @@ export const CalculatorForm = ({ silverNisab }) => {
           <ResetButton type="reset">Reset</ResetButton>
         </Form>
       </Formik>
-      <Due>{dueAmount}</Due>
+      <Due ref={dueFocus}>{dueAmount}</Due>
     </Div>
   )
 }
