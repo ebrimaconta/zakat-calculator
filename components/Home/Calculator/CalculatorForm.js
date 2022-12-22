@@ -3,9 +3,10 @@ import { Form, Div, Input, Due, SubmitButton, Error, H3, ResetButton } from '../
 import { useFormik, Formik } from 'formik'
 import * as yup from 'yup'
 
-export const CalculatorForm = () => {
+export const CalculatorForm = ({ silverNisab }) => {
   const [dueAmount, calculateAmount] = useState('')
-
+  //convert silver price into floating number to remove "£" sign
+  const silverNis = parseFloat(silverNisab.substring(1))
   const validationSchema = yup.object().shape({
     goldSilver: yup.number().required('Please enter a amount'),
     cash: yup.number().required('Please enter a amount'),
@@ -22,14 +23,16 @@ export const CalculatorForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
+      const total = values.buisnessAssets + values.cash + values.goldSilver - values.liabilities
       const totalDue = Math.round(
         (values.buisnessAssets + values.cash + values.goldSilver - values.liabilities) * 0.025
       )
-      if (totalDue > 0) {
+      //check to see if the total amount is greater then the minimum nisab
+      if (total >= silverNis) {
         calculateAmount(`Zakat due: £${totalDue}`)
-      }
-      else {
-        calculateAmount('You have no zakat to pay')
+        console.log(silverNis)
+      } else {
+        calculateAmount('Your total has not reached the minimum nisab')
       }
     },
     onReset: () => {

@@ -1,6 +1,6 @@
 import {NisabInfo} from './NisabInfo'
 import '@testing-library/jest-dom'
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 // import API mocking utilities from Mock Service Worker
 import {rest} from 'msw'
 import {setupServer} from 'msw/node'
