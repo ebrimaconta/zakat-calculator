@@ -5,12 +5,11 @@ import InfoOutlined from '@mui/icons-material/InfoOutlined';
 export const H3 = styled.h3`
   color: white;
 `
-export const Information = styled.h4`
+export const Information = styled.h3`
 color: white;
-text-decoration: underline;
 `
 export const NisabBanner = styled.div`
-text-align: center;
+  text-align: center;
 `
 export const InfoOut = styled(InfoOutlined)`
   background-color: #112b3c;

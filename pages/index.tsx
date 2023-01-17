@@ -6,7 +6,6 @@ const Home: NextPage = () => {
   return <>
     <Titles />
     <NisabInfo/>
-    <CalculatorForm/>
   </>;
 };
 
